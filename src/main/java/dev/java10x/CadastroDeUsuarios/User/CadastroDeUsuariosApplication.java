@@ -1,4 +1,4 @@
-package dev.java10x.CadastroDeUsuarios;
+package dev.java10x.CadastroDeUsuarios.User;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

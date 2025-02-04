@@ -1,11 +1,20 @@
-package dev.java10x.CadastroDeUsuarios;
+package dev.java10x.CadastroDeUsuarios.User.User;
 
 
+import dev.java10x.CadastroDeUsuarios.User.Mission.MissionModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 //transforma a classe em uma entidade do DB
 @Entity
 @Table(name = "tb_usuario")
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class UserModel {
 
     @Id
@@ -14,6 +23,10 @@ public class UserModel {
     private String name;
     private String email;
     private int idade;
+
+    @ManyToOne
+    @JoinColumn(name = "missoes_id")
+    private MissionModel missoes;
 
     public UserModel() {
     }

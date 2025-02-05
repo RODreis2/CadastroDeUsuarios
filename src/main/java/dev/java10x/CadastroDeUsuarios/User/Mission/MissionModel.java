@@ -18,12 +18,15 @@ public class MissionModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    private String nome;
-    private String descricao;
+
+    @Column(name = "nome")
+    private String name;
+    @Column(name = "descrição")
+    private String description;
 
     //Uma missão pode ter varias pessoas
-    @OneToMany(mappedBy = "missoes")
-    private List<UserModel> missoes;
+    @OneToMany(mappedBy = "mission")
+    private List<UserModel> missions;
 
 
 }

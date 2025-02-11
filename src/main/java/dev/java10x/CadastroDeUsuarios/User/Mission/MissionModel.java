@@ -1,5 +1,6 @@
 package dev.java10x.CadastroDeUsuarios.User.Mission;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.java10x.CadastroDeUsuarios.User.User.UserModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,11 +22,12 @@ public class MissionModel {
 
     @Column(name = "nome")
     private String name;
-    @Column(name = "descrição")
+    @Column(name = "descricao")
     private String description;
 
     //Uma missão pode ter varias pessoas
     @OneToMany(mappedBy = "mission")
+    @JsonIgnore
     private List<UserModel> missions;
 
 

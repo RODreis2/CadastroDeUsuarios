@@ -32,6 +32,12 @@ public class UserController {
         return userService.listUsers();
     }
 
+    //Mostrar todos os usuarios (READ)
+    @GetMapping("/listar/{id}")
+    public UserModel MostrarUsersID(@PathVariable long id){
+        return userService.listbyID(id) ;
+    }
+
     @PutMapping("/AlterarID")
     public String AlterarPorID(){
         return "Dados do usuario alterado";

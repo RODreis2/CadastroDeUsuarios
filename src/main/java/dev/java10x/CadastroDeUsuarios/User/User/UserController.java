@@ -2,9 +2,17 @@ package dev.java10x.CadastroDeUsuarios.User.User;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping
+@RequestMapping("/user")
 public class UserController {
+
+    private UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/boasVindas")
     public String BoasVindas(){
@@ -13,15 +21,15 @@ public class UserController {
 
 
     //Adicionar usuario (CREATE)
-    @PostMapping("/PublicarUser")
+    @PostMapping("/adicionar")
     public String CriarUsers(){
         return "Usuario criado";
     }
 
     //Mostrar todos os usuarios (READ)
-    @GetMapping("/todos")
-    public String MostrarUsers(){
-        return "usuarios";
+    @GetMapping("/listar")
+    public List<UserModel> MostrarUsers(){
+        return userService.listUsers();
     }
 
     @PutMapping("/AlterarID")
@@ -29,7 +37,7 @@ public class UserController {
         return "Dados do usuario alterado";
     }
 
-    @DeleteMapping("/DeletarUsuarioID")
+    @DeleteMapping("/DeletarID")
     public String DeletarUsuario(){
         return "Usuario deletado";
     }

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("Missoes")
 public class MissionController {
 
-    @PostMapping("/PublicarMissao")
+    @PostMapping("/adicionar")
     public String CriarUsers(){
         return "Usuario criado";
     }
@@ -16,12 +16,12 @@ public class MissionController {
         return "Missoes";
     }
 
-    @PutMapping("/Alterar")
+    @PutMapping("/AlterarID")
     public String AlterMission(){
         return "Missao alterada";
     }
 
-    @DeleteMapping("/Delete")
+    @DeleteMapping("/DeleteID")
     public String DeletarMission(){
         return "Missao deletada";
     }

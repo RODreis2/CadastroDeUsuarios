@@ -1,5 +1,6 @@
 package dev.java10x.CadastroDeUsuarios.User.User;
 
+import org.hibernate.query.UnknownSqlResultSetMappingException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,8 +23,8 @@ public class UserController {
 
     //Adicionar usuario (CREATE)
     @PostMapping("/adicionar")
-    public String CriarUsers(){
-        return "Usuario criado";
+    public UserModel CriarUsers(UserModel userModel){
+        return userService.CreateUser(userModel);
     }
 
     //Mostrar todos os usuarios (READ)

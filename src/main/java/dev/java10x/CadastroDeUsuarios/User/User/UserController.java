@@ -45,7 +45,7 @@ public class UserController {
     }
 
     @DeleteMapping("/DeletarID")
-    public String DeletarUsuario(){
-        return "Usuario deletado";
+    public void DeletarUsuario(@PathVariable long id){
+         userService.DeleteUser(id);
     }
 }

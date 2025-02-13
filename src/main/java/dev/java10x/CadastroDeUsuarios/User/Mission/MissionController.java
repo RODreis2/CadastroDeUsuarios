@@ -31,7 +31,7 @@ public class MissionController {
     }
 
     @DeleteMapping("/Delete/{id}")
-    public void DeletarMission(long id){
+    public void DeletarMission(@PathVariable long id){
         missionService.DeleteMission(id);
     }
 

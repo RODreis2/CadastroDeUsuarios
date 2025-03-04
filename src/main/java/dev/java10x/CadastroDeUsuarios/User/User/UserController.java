@@ -39,9 +39,9 @@ public class UserController {
         return userService.listbyID(id) ;
     }
 
-    @PutMapping("/AlterarID")
-    public String AlterarPorID(){
-        return "Dados do usuario alterado";
+    @PutMapping("/Alterar/{id}")
+    public UserModel AlterarPorID(@PathVariable long id,@RequestBody UserModel useratualizado){
+        return userService.UpdateUser(id,useratualizado);
     }
 
     @DeleteMapping("/DeletarID")

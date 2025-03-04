@@ -25,6 +25,15 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    //Create users
+    public  UserModel UpdateUser(long id, UserModel updatedUser){
+        if (userRepository.existsById(id)){
+            updatedUser.setId(id);
+            return userRepository.save(updatedUser);
+        }
+        return null;
+    }
+
     //Delete user by id
     public void DeleteUser(long id){
         userRepository.deleteById(id);

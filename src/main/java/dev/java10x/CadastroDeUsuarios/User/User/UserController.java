@@ -1,6 +1,7 @@
 package dev.java10x.CadastroDeUsuarios.User.User;
 
-import org.hibernate.query.UnknownSqlResultSetMappingException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,29 +24,50 @@ public class UserController {
 
     //Adicionar usuario (CREATE)
     @PostMapping("/adicionar")
-    public UserDTO CriarUsers(UserDTO userDTO){
-        return userService.CreateUser(userDTO);
+    public ResponseEntity<String> CriarUsers(UserDTO user){
+        UserDTO newUser = userService.CreateUser(user);
+        return ResponseEntity.status(HttpStatus.CREATED)
+        .body("User criado com sucesso: " + newUser.getName() + "(ID): " + newUser.getId());
     }
 
     //Mostrar todos os usuarios (READ)
     @GetMapping("/listar")
-    public List<UserDTO> MostrarUsers(){
-        return userService.listUsers();
+    public ResponseEntity<List<UserDTO>> MostrarUsers(){
+     List<UserDTO> users = userService.listUsers();
+     return ResponseEntity.ok(users);
     }
 
     //Mostrar todos os usuarios (READ)
     @GetMapping("/listar/{id}")
-    public UserDTO MostrarUsersID(@PathVariable long id){
-        return userService.listbyID(id) ;
+    public ResponseEntity<?> MostrarUsersID(@PathVariable long id){
+        UserDTO user = userService.listbyID(id);
+        if (user != null){
+            return ResponseEntity.ok(user);
+        }else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("User não encontrado");
+        }
     }
 
     @PutMapping("/Alterar/{id}")
-    public UserDTO AlterarPorID(@PathVariable long id,@RequestBody UserDTO useratualizado){
-        return userService.UpdateUser(id,useratualizado);
+    public ResponseEntity<String> AlterarPorID(@PathVariable long id,@RequestBody UserDTO useratualizado){
+        if (userService.listbyID(id) != null){
+            userService.UpdateUser(id, useratualizado);
+            return ResponseEntity.ok("User atualizado com sucesso");
+        }else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("User não encontrado");
+        }
     }
 
     @DeleteMapping("/DeletarID")
-    public void DeletarUsuario(@PathVariable long id){
-         userService.DeleteUser(id);
+    public ResponseEntity<String> DeletarUsuario(@PathVariable long id){
+        if (userService.listbyID(id) != null) {
+            userService.DeleteUser(id);
+            return ResponseEntity.ok("User deletado com sucesso");
+        }else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("User não encontrado");
+        }
     }
 }

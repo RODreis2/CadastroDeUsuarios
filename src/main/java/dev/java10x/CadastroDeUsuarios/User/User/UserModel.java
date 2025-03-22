@@ -24,7 +24,7 @@ public class UserModel {
     @Column(name = "nome")
     private String name;
 
-    @Column(unique = true)
+    @Column(unique = true, name = "email")
     private String email;
 
     @Column(name = "idade")
@@ -34,4 +34,6 @@ public class UserModel {
     @JoinColumn(name = "missoes_id")
     private MissionModel mission;
 
+    @JoinColumn(name = "cargo")
+    private String cargo;
 }

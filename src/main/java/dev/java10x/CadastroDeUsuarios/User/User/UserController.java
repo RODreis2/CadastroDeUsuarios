@@ -23,24 +23,24 @@ public class UserController {
 
     //Adicionar usuario (CREATE)
     @PostMapping("/adicionar")
-    public UserModel CriarUsers(UserModel userModel){
-        return userService.CreateUser(userModel);
+    public UserDTO CriarUsers(UserDTO userDTO){
+        return userService.CreateUser(userDTO);
     }
 
     //Mostrar todos os usuarios (READ)
     @GetMapping("/listar")
-    public List<UserModel> MostrarUsers(){
+    public List<UserDTO> MostrarUsers(){
         return userService.listUsers();
     }
 
     //Mostrar todos os usuarios (READ)
     @GetMapping("/listar/{id}")
-    public UserModel MostrarUsersID(@PathVariable long id){
+    public UserDTO MostrarUsersID(@PathVariable long id){
         return userService.listbyID(id) ;
     }
 
     @PutMapping("/Alterar/{id}")
-    public UserModel AlterarPorID(@PathVariable long id,@RequestBody UserModel useratualizado){
+    public UserDTO AlterarPorID(@PathVariable long id,@RequestBody UserDTO useratualizado){
         return userService.UpdateUser(id,useratualizado);
     }
 
